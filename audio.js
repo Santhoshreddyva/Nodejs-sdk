@@ -1,3 +1,4 @@
+const axios = require('axios');
 
 class Audio {
     static async create(client, messages, model, options = {}) {

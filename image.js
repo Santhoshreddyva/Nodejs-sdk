@@ -1,3 +1,4 @@
+const axios = require('axios');
 const SambanovaAPIClient = require('./apiClient');
 
 class Image {

@@ -1,20 +1,30 @@
+const axios = require('axios');
 const SambanovaAPIClient = require('./apiClient');
+const fs = require('fs');
+const FormData = require('form-data');
 
 class Transcription {
-    static async create(client, messages, model, options = {}) {
-        const payload = {
-            messages,
-            model,
-            max_tokens: options.max_tokens || 1024,
-            temperature: options.temperature || 0.01,
-            stream: options.stream || true
+    static async create(client, audioFilePath, model, language = 'english', responseFormat = 'json', stream = true) {
+        const headers = client.headers();
+        delete headers['Content-Type'];
+
+        const formData = new FormData();
+        formData.append('file', fs.createReadStream(audioFilePath));
+        formData.append('model', model);
+        formData.append('language', language);
+        formData.append('response_format', responseFormat);
+        formData.append('stream', stream.toString());
+
+        const finalHeaders = {
+            ...headers,
+            ...formData.getHeaders()
         };
 
         try {
             const response = await axios.post(
                 client.url('/v1/audio/transcriptions'),
-                payload,
-                { headers: client.headers() }
+                formData,
+                { headers: finalHeaders }
             );
             return response.data;
         } catch (error) {

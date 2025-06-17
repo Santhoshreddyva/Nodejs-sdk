@@ -1,11 +1,11 @@
 const SambanovaAPIClient = require('../apiClient');
 const Translation = require('../translation');
-const { apiKey } = require('./config');
+const { apiKey } = require('../config');
 
 async function runTranslationExample() {
     const client = new SambanovaAPIClient(apiKey);
-    const audioFilePath = 'path/to/audio/file.wav';
-    const model = 'translation-model';
+    const audioFilePath = 'examples/testdata/translation/sample_audio3.mp3';
+    const model = 'Whisper-Large-v3';
 
     try {
         const result = await Translation.create(client, audioFilePath, model);
