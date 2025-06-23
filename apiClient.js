@@ -1,5 +1,3 @@
-
-
 class SambanovaAPIClient {
     constructor(apiKey) {
         this.apiKey = apiKey;
@@ -19,4 +17,5 @@ class SambanovaAPIClient {
     }
 }
 
-module.exports = SambanovaAPIClient;
+export default SambanovaAPIClient;
+ 

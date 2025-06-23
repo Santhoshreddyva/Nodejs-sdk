@@ -1,8 +1,9 @@
 {
-  "name": "sambanova-nodejs-sdk",
+  "name": "sambanova-nodejs-sdk", 
   "version": "1.0.0",
   "description": "Node.js SDK for SambaNova",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
